@@ -4,6 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/metasurface-py.svg)](https://pypi.org/project/metasurface-py/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: BSD-3](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://jman4162.github.io/metasurface-py/)
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://metasurface-py.streamlit.app)
 
 Open-source Python package for design, analysis, and optimization of programmable electromagnetic metasurfaces for wireless communication and sensing.
