@@ -1,0 +1,3270 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jman4162.github.io/metasurface-py/api/channels/">
+      
+      
+        <link rel="prev" href="../em/">
+      
+      
+        <link rel="next" href="../optimize/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Channels - metasurface-py</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metasurface_py.channels" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="metasurface-py" class="md-header__button md-logo" aria-label="metasurface-py" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            metasurface-py
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Channels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jman4162/metasurface-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jman4162/metasurface-py
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="metasurface-py" class="md-nav__button md-logo" aria-label="metasurface-py" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    metasurface-py
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jman4162/metasurface-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jman4162/metasurface-py
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../surfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../em/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metasurface_py.channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.LinkBudgetResult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkBudgetResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MIMORISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MIMORISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.num_rx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        num_rx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.num_tx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        num_tx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.channel_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channel_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.optimal_state_continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimal_state_continuous
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.link_budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        link_budget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.optimal_state_continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimal_state_continuous
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.received_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        received_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.snr_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snr_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.UniformLinearArray" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UniformLinearArray
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UniformLinearArray">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.UniformLinearArray.positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        positions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WidebandRISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WidebandRISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.channel_vs_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channel_vs_frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.ofdm_capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ofdm_capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.received_power_vs_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        received_power_vs_frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.free_space_path_loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free_space_path_loss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.free_space_path_loss_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free_space_path_loss_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimize/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimize
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adapters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backends
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metasurface_py.channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.LinkBudgetResult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkBudgetResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MIMORISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MIMORISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.num_rx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        num_rx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.num_tx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        num_tx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.channel_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channel_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.MIMORISLink.optimal_state_continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimal_state_continuous
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.link_budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        link_budget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.optimal_state_continuous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimal_state_continuous
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.received_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        received_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.RISLink.snr_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snr_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.UniformLinearArray" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UniformLinearArray
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UniformLinearArray">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.UniformLinearArray.positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        positions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WidebandRISLink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WidebandRISLink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.channel_vs_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        channel_vs_frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.ofdm_capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ofdm_capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.WidebandRISLink.received_power_vs_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        received_power_vs_frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.free_space_path_loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free_space_path_loss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.channels.free_space_path_loss_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free_space_path_loss_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Channels</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="metasurface_py.channels" class="doc doc-heading">
+            <code>metasurface_py.channels</code>
+
+
+</h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Channel models for RIS-assisted communication links.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.channels.LinkBudgetResult" class="doc doc-heading">
+            <code>LinkBudgetResult</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Result of an RIS-assisted link budget computation.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rx_power_dbm</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Received power [dBm].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>snr_db</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Signal-to-noise ratio [dB].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>path_loss_direct_db</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Direct TX-RX path loss [dB].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>path_loss_ris_db</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Effective RIS-assisted path loss [dB].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ris_gain_db</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Improvement over direct link [dB].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The surface state used.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.channels.MIMORISLink" class="doc doc-heading">
+            <code>MIMORISLink</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>MIMO RIS-assisted narrowband link.</p>
+
+
+<details class="extends-the-siso-model-to-multi-antenna-tx-and-rx" open>
+  <summary>Extends the SISO model to multi-antenna TX and RX</summary>
+  <p>H_ris = H_sr @ diag(phi) @ H_ri
+H_total = H_ris + H_direct (if included)</p>
+</details>
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>surface</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Metasurface
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.metasurface.Metasurface)" href="../surfaces/#metasurface_py.surfaces.Metasurface">Metasurface</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Metasurface (RIS).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tx_positions</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>TX antenna positions, shape (M_tx, 3).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rx_positions</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RX antenna positions, shape (M_rx, 3).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Operating frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_direct</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include direct TX-RX path.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="metasurface_py.channels.MIMORISLink.num_rx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">num_rx</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of RX antennas.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="metasurface_py.channels.MIMORISLink.num_tx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">num_tx</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of TX antennas.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.MIMORISLink.capacity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">capacity</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">snr_linear</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>MIMO capacity [bits/s/Hz].</p>
+<p>C = log2(det(I + (snr/M_tx) * H @ H^H))</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RIS configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>snr_linear</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Total SNR (linear).</p>
+              </div>
+            </td>
+            <td>
+                  <code>100.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Capacity in bits/s/Hz.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.MIMORISLink.channel_matrix" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">channel_matrix</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute MIMO channel matrix H_total.</p>
+<p>H_total = H_sr @ diag(phi) @ H_ri [+ H_direct]</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RIS phase configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Channel matrix, shape (M_rx, M_tx), complex.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.MIMORISLink.optimal_state_continuous" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">optimal_state_continuous</span><span class="p">()</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Optimal RIS phases via dominant singular vector alignment.</p>
+<p>For MIMO, aligns each element's phase to maximize the
+dominant singular value of H_ris. Uses rank-1 approximation:
+phi_n = -(angle(h_ri_n @ v1) + angle(u1^H @ h_sr_n))
+where u1, v1 are dominant left/right singular vectors of
+H_sr @ H_ri (without RIS phases).</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SurfaceState with optimal continuous phases.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.channels.RISLink" class="doc doc-heading">
+            <code>RISLink</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Narrowband SISO RIS-assisted free-space link.</p>
+<p>Models the cascaded channel: TX -&gt; RIS -&gt; RX, plus an optional
+direct TX -&gt; RX path.</p>
+<p>Uses the standard model from Wu &amp; Zhang (2019):
+    h_ris = h_sr^H @ diag(Phi) @ h_ri
+where h_ri is TX-to-RIS, h_sr is RIS-to-RX, and Phi is the
+diagonal RIS response matrix.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>surface</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Metasurface
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.metasurface.Metasurface)" href="../surfaces/#metasurface_py.surfaces.Metasurface">Metasurface</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The metasurface (RIS).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tx</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Position3D
+
+
+  
+      dataclass
+   (metasurface_py.core.types.Position3D)" href="../core/#metasurface_py.core.Position3D">Position3D</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transmitter position.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rx</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Position3D
+
+
+  
+      dataclass
+   (metasurface_py.core.types.Position3D)" href="../core/#metasurface_py.core.Position3D">Position3D</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Receiver position.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Operating frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_direct</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to include the direct TX-RX path.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.RISLink.link_budget" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">link_budget</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">tx_power_dbm</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">noise_dbm</span><span class="o">=-</span><span class="mf">90.0</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute full link budget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Surface configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tx_power_dbm</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transmit power [dBm].</p>
+              </div>
+            </td>
+            <td>
+                  <code>30.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>noise_dbm</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Noise power [dBm].</p>
+              </div>
+            </td>
+            <td>
+                  <code>-90.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="LinkBudgetResult
+
+
+  
+      dataclass
+   (metasurface_py.channels.result.LinkBudgetResult)" href="#metasurface_py.channels.LinkBudgetResult">LinkBudgetResult</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>LinkBudgetResult with all metrics.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.RISLink.optimal_state_continuous" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">optimal_state_continuous</span><span class="p">()</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute analytically optimal continuous phase configuration.</p>
+<p>For free-space SISO, the optimal phases align all element
+contributions in phase at the receiver:
+    phi_n = -(angle(h_ri_n) + angle(h_sr_n))</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SurfaceState with optimal continuous phases.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.RISLink.received_power" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">received_power</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute received power (linear) for a given surface state.</p>
+<p>Assumes unit transmit power.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current surface configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Received power [linear, relative to unit Tx power].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.RISLink.snr_db" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">snr_db</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">tx_power_dbm</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">noise_dbm</span><span class="o">=-</span><span class="mf">90.0</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute SNR in dB.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Surface configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tx_power_dbm</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transmit power [dBm].</p>
+              </div>
+            </td>
+            <td>
+                  <code>30.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>noise_dbm</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Noise power [dBm].</p>
+              </div>
+            </td>
+            <td>
+                  <code>-90.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SNR [dB].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.channels.UniformLinearArray" class="doc doc-heading">
+            <code>UniformLinearArray</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Uniform linear array (ULA) of antennas.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>num_antennas</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of antenna elements.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>spacing</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Inter-element spacing [meters].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>center</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Position3D
+
+
+  
+      dataclass
+   (metasurface_py.core.types.Position3D)" href="../core/#metasurface_py.core.Position3D">Position3D</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Center position of the array.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>axis</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unit vector along array axis. Default [1,0,0] (x-axis).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="metasurface_py.channels.UniformLinearArray.positions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">positions</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Antenna positions, shape (M, 3) [meters].</p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.channels.WidebandRISLink" class="doc doc-heading">
+            <code>WidebandRISLink</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Wideband/OFDM RIS-assisted SISO link.</p>
+<p>Evaluates the RIS-assisted channel at each subcarrier frequency.
+A single RIS phase configuration applies to all subcarriers
+(frequency-flat RIS control, which is physical reality).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>surface</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Metasurface
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.metasurface.Metasurface)" href="../surfaces/#metasurface_py.surfaces.Metasurface">Metasurface</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Metasurface (RIS).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tx</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Position3D
+
+
+  
+      dataclass
+   (metasurface_py.core.types.Position3D)" href="../core/#metasurface_py.core.Position3D">Position3D</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transmitter position.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rx</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Position3D
+
+
+  
+      dataclass
+   (metasurface_py.core.types.Position3D)" href="../core/#metasurface_py.core.Position3D">Position3D</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Receiver position.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>frequencies</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="FrequencyGrid
+
+
+  
+      dataclass
+   (metasurface_py.core.types.FrequencyGrid)" href="../core/#metasurface_py.core.FrequencyGrid">FrequencyGrid</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>OFDM subcarrier frequencies.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_direct</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include direct TX-RX path.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.WidebandRISLink.channel_vs_frequency" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">channel_vs_frequency</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Channel coefficient at each subcarrier.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RIS phase configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex channel, shape (n_freq,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.WidebandRISLink.ofdm_capacity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ofdm_capacity</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">snr_linear</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>OFDM sum-rate capacity [bits/s/Hz].</p>
+<p>C = (1/K) * sum_k log2(1 + snr * |h[k]|^2)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RIS configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>snr_linear</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SNR per subcarrier (linear).</p>
+              </div>
+            </td>
+            <td>
+                  <code>100.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Capacity in bits/s/Hz.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="metasurface_py.channels.WidebandRISLink.received_power_vs_frequency" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">received_power_vs_frequency</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Received power at each subcarrier (linear).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RIS configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Power per subcarrier, shape (n_freq,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.channels.free_space_path_loss" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">free_space_path_loss</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Friis free-space path loss (linear scale).</p>
+<p>FSPL = (4 * pi * d * f / c)^2</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>distance</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Distance [meters].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path loss as a linear ratio (&gt;= 1).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.channels.free_space_path_loss_db" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">free_space_path_loss_db</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Friis free-space path loss in dB.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>distance</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Distance [meters].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path loss in dB (positive value).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
