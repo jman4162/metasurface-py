@@ -49,6 +49,17 @@ plot_pattern_2d(pattern, cut_phi=0.0)
 - **Experiment management** — TOML configs, parameter sweeps, reproducibility metadata
 - **Interoperability** — CSV/HDF5/Touchstone import, scikit-rf adapter, xarray labeled outputs
 
+## Tutorials
+
+Interactive Jupyter notebooks that run in Google Colab (no install required):
+
+| Notebook | Description | Colab |
+|----------|-------------|-------|
+| [01 Getting Started](notebooks/01_getting_started.ipynb) | Create a metasurface, steer a beam, compare quantization | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/01_getting_started.ipynb) |
+| [02 Optimization](notebooks/02_optimization.ipynb) | Relax-then-quantize with hardware constraints | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/02_optimization.ipynb) |
+| [03 RIS Link](notebooks/03_ris_link.ipynb) | RIS-assisted communication link, N² scaling | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/03_ris_link.ipynb) |
+| [04 Sensing & ISAC](notebooks/04_sensing_isac.ipynb) | Radar detection, localization CRLB, comms-sensing tradeoff | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/04_sensing_isac.ipynb) |
+
 ## Citation
 
 If you use metasurface-py in your research, please cite:
