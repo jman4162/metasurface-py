@@ -9,7 +9,10 @@ Run with: streamlit run app/streamlit_app.py
 
 from __future__ import annotations
 
+import io
+
 import matplotlib
+
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
@@ -24,15 +27,14 @@ from metasurface_py.em import (
     far_field_pattern,
     half_power_beamwidth,
     peak_gain_db,
-    sidelobe_level,
     steering_phase,
 )
 from metasurface_py.geometry import RectangularLattice
 from metasurface_py.optimize import MaxGainObjective, relax_then_quantize
 from metasurface_py.plotting import (
+    plot_convergence,
     plot_pattern_2d,
     plot_pattern_comparison,
-    plot_convergence,
     plot_state_map,
     set_publication_style,
 )
@@ -49,11 +51,13 @@ st.caption("Design, analyze, and optimize programmable electromagnetic metasurfa
 
 set_publication_style()
 
-tab1, tab2, tab3 = st.tabs([
-    "🎯 Beam Pattern Designer",
-    "📶 RIS Link Calculator",
-    "⚡ Optimization",
-])
+tab1, tab2, tab3 = st.tabs(
+    [
+        "🎯 Beam Pattern Designer",
+        "📶 RIS Link Calculator",
+        "⚡ Optimization",
+    ]
+)
 
 # ── Tab 1: Beam Pattern Designer ──────────────────────────────
 
@@ -62,16 +66,20 @@ with tab1:
 
     with col_params:
         st.subheader("Parameters")
-        nx = st.slider("Array size (N×N)", 4, 48, 16, 4, key="t1_nx")
+        nx = st.slider("Array size (NxN)", 4, 48, 16, 4, key="t1_nx")
         freq_ghz = st.slider("Frequency [GHz]", 1.0, 60.0, 28.0, 0.5, key="t1_freq")
         theta_deg = st.slider("Steering angle θ [deg]", 0, 80, 30, 1, key="t1_theta")
-        num_bits = st.selectbox("Quantization", [None, 1, 2, 3], index=2,
-                                format_func=lambda x: "Continuous" if x is None else f"{x}-bit",
-                                key="t1_bits")
+        num_bits = st.selectbox(
+            "Quantization",
+            [None, 1, 2, 3],
+            index=2,
+            format_func=lambda x: "Continuous" if x is None else f"{x}-bit",
+            key="t1_bits",
+        )
 
     freq = freq_ghz * 1e9
     lam = 3e8 / freq
-    lattice = RectangularLattice(nx=nx, ny=nx, dx=lam/2, dy=lam/2)
+    lattice = RectangularLattice(nx=nx, ny=nx, dx=lam / 2, dy=lam / 2)
 
     if num_bits is not None:
         cell = PhaseOnlyCell(state_space=DiscretePhaseSpace(num_bits=num_bits))
@@ -116,6 +124,14 @@ with tab1:
         ax2.set_title("Phase Map")
         fig.tight_layout()
         st.pyplot(fig)
+        buf = io.BytesIO()
+        fig.savefig(buf, format="pdf", bbox_inches="tight")
+        st.download_button(
+            "📥 Download PDF",
+            buf.getvalue(),
+            "beam_pattern.pdf",
+            mime="application/pdf",
+        )
         plt.close(fig)
 
 
@@ -126,14 +142,18 @@ with tab2:
 
     with col_params2:
         st.subheader("Link Parameters")
-        n_ris = st.slider("RIS size (N×N)", 4, 48, 16, 4, key="t2_nx")
+        n_ris = st.slider("RIS size (NxN)", 4, 48, 16, 4, key="t2_nx")
         freq2_ghz = st.slider("Frequency [GHz]", 1.0, 60.0, 28.0, 0.5, key="t2_freq")
         tx_z = st.slider("TX height [m]", 5.0, 100.0, 20.0, 5.0, key="t2_txz")
         rx_x = st.slider("RX distance [m]", 5.0, 100.0, 10.0, 5.0, key="t2_rxx")
         tx_power = st.slider("TX power [dBm]", 0, 40, 20, 1, key="t2_txp")
-        bits_ris = st.selectbox("RIS quantization", [None, 1, 2, 3], index=2,
-                                format_func=lambda x: "Continuous" if x is None else f"{x}-bit",
-                                key="t2_bits")
+        bits_ris = st.selectbox(
+            "RIS quantization",
+            [None, 1, 2, 3],
+            index=2,
+            format_func=lambda x: "Continuous" if x is None else f"{x}-bit",
+            key="t2_bits",
+        )
 
     freq2 = freq2_ghz * 1e9
     lam2 = 3e8 / freq2
@@ -141,10 +161,16 @@ with tab2:
     rx2 = Position3D(x=rx_x, y=0.0, z=1.5)
     noise_dbm = -90.0
 
-    lattice2 = RectangularLattice(nx=n_ris, ny=n_ris, dx=lam2/2, dy=lam2/2)
+    lattice2 = RectangularLattice(nx=n_ris, ny=n_ris, dx=lam2 / 2, dy=lam2 / 2)
     cell_cont2 = PhaseOnlyCell(state_space=ContinuousPhaseSpace())
     surface_cont2 = Metasurface(lattice=lattice2, cell=cell_cont2)
-    link_cont = RISLink(surface=surface_cont2, tx=tx2, rx=rx2, freq=freq2, include_direct=True)
+    link_cont = RISLink(
+        surface=surface_cont2,
+        tx=tx2,
+        rx=rx2,
+        freq=freq2,
+        include_direct=True,
+    )
 
     opt_state = link_cont.optimal_state_continuous()
     snr_opt = link_cont.snr_db(opt_state, float(tx_power), noise_dbm)
@@ -153,7 +179,13 @@ with tab2:
         cell_q = PhaseOnlyCell(state_space=DiscretePhaseSpace(num_bits=bits_ris))
         state_q = opt_state.quantize(cell_q.state_space.codebook)
         surface_q = Metasurface(lattice=lattice2, cell=cell_q)
-        link_q = RISLink(surface=surface_q, tx=tx2, rx=rx2, freq=freq2, include_direct=True)
+        link_q = RISLink(
+            surface=surface_q,
+            tx=tx2,
+            rx=rx2,
+            freq=freq2,
+            include_direct=True,
+        )
         snr_q = link_q.snr_db(state_q, float(tx_power), noise_dbm)
     else:
         snr_q = snr_opt
@@ -173,10 +205,16 @@ with tab2:
         sizes = [4, 8, 12, 16, 20, 24, 32]
         snrs_sweep = []
         for n in sizes:
-            lat_s = RectangularLattice(nx=n, ny=n, dx=lam2/2, dy=lam2/2)
+            lat_s = RectangularLattice(nx=n, ny=n, dx=lam2 / 2, dy=lam2 / 2)
             cell_s = PhaseOnlyCell(state_space=ContinuousPhaseSpace())
             surf_s = Metasurface(lattice=lat_s, cell=cell_s)
-            link_s = RISLink(surface=surf_s, tx=tx2, rx=rx2, freq=freq2, include_direct=True)
+            link_s = RISLink(
+                surface=surf_s,
+                tx=tx2,
+                rx=rx2,
+                freq=freq2,
+                include_direct=True,
+            )
             os = link_s.optimal_state_continuous()
             snrs_sweep.append(link_s.snr_db(os, float(tx_power), noise_dbm))
 
@@ -189,6 +227,14 @@ with tab2:
         ax.legend()
         ax.grid(True, alpha=0.3)
         st.pyplot(fig2)
+        buf2 = io.BytesIO()
+        fig2.savefig(buf2, format="pdf", bbox_inches="tight")
+        st.download_button(
+            "📥 Download PDF",
+            buf2.getvalue(),
+            "ris_link.pdf",
+            mime="application/pdf",
+        )
         plt.close(fig2)
 
 
@@ -199,17 +245,22 @@ with tab3:
 
     with col_params3:
         st.subheader("Optimization Settings")
-        n_opt = st.slider("Array size (N×N)", 4, 24, 10, 2, key="t3_nx")
+        n_opt = st.slider("Array size (NxN)", 4, 24, 10, 2, key="t3_nx")
         freq3_ghz = st.slider("Frequency [GHz]", 1.0, 60.0, 10.0, 0.5, key="t3_freq")
         theta_opt = st.slider("Target θ [deg]", 0, 80, 30, 5, key="t3_theta")
-        bits_opt = st.selectbox("Quantization", [1, 2, 3], index=1, key="t3_bits",
-                                format_func=lambda x: f"{x}-bit")
+        bits_opt = st.selectbox(
+            "Quantization",
+            [1, 2, 3],
+            index=1,
+            key="t3_bits",
+            format_func=lambda x: f"{x}-bit",
+        )
         maxiter = st.slider("Max iterations", 10, 200, 50, 10, key="t3_maxiter")
         run_btn = st.button("🚀 Run Optimization", key="t3_run")
 
     freq3 = freq3_ghz * 1e9
     lam3 = 3e8 / freq3
-    lattice3 = RectangularLattice(nx=n_opt, ny=n_opt, dx=lam3/2, dy=lam3/2)
+    lattice3 = RectangularLattice(nx=n_opt, ny=n_opt, dx=lam3 / 2, dy=lam3 / 2)
     cell3 = PhaseOnlyCell(state_space=DiscretePhaseSpace(num_bits=bits_opt))
     surface3 = Metasurface(lattice=lattice3, cell=cell3)
 
@@ -234,9 +285,14 @@ with tab3:
         # Optimize
         with st.spinner("Optimizing..."):
             result = relax_then_quantize(
-                obj, surface3, freq3, angles_opt,
+                obj,
+                surface3,
+                freq3,
+                angles_opt,
                 continuous_method="L-BFGS-B",
-                refine=True, maxiter=maxiter, seed=42,
+                refine=True,
+                maxiter=maxiter,
+                seed=42,
             )
 
         pattern_opt = far_field_pattern(surface3, result.state, freq3, angles_plot3)
@@ -246,9 +302,12 @@ with tab3:
 
             fig3, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
             plot_pattern_comparison(
-                [(pattern_bl, "Analytical+Quantize"),
-                 (pattern_opt, "Optimized+Quantize")],
-                cut_phi=0.0, ax=ax1,
+                [
+                    (pattern_bl, "Analytical+Quantize"),
+                    (pattern_opt, "Optimized+Quantize"),
+                ],
+                cut_phi=0.0,
+                ax=ax1,
             )
             ax1.set_xlim([0, 90])
             ax1.set_ylim([-30, 0])
@@ -256,11 +315,20 @@ with tab3:
 
             plot_convergence(
                 {"Objective": result.convergence_history},
-                ax=ax2, ylabel="Neg. Gain [dBi]",
+                ax=ax2,
+                ylabel="Neg. Gain [dBi]",
             )
             ax2.set_title("Convergence")
             fig3.tight_layout()
             st.pyplot(fig3)
+            buf3 = io.BytesIO()
+            fig3.savefig(buf3, format="pdf", bbox_inches="tight")
+            st.download_button(
+                "📥 Download PDF",
+                buf3.getvalue(),
+                "optimization.pdf",
+                mime="application/pdf",
+            )
             plt.close(fig3)
     else:
         with col_plots3:

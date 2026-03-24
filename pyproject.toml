@@ -57,6 +57,11 @@ dev = [
     "build>=1.0",
     "twine>=5.0",
 ]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=0.24",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/metasurface_py"]
