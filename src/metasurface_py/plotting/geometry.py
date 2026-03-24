@@ -66,9 +66,20 @@ def plot_state_map(
     if ax is None:
         _, ax = plt.subplots()
 
-    phase_map = np.rad2deg(state.values.reshape(nx, ny))
-    cmap = kwargs.pop("cmap", "twilight")
-    mesh = ax.pcolormesh(phase_map, cmap=cmap, shading="auto", **kwargs)
+    # Wrap to [-pi, pi] then convert to degrees for clear visualization
+    wrapped = np.angle(np.exp(1j * state.values))
+    phase_map = np.rad2deg(wrapped.reshape(nx, ny))
+    cmap = kwargs.pop("cmap", "RdBu")
+    vmin = kwargs.pop("vmin", -180)
+    vmax = kwargs.pop("vmax", 180)
+    mesh = ax.pcolormesh(
+        phase_map,
+        cmap=cmap,
+        shading="auto",
+        vmin=vmin,
+        vmax=vmax,
+        **kwargs,
+    )
     ax.set_xlabel("Element x")
     ax.set_ylabel("Element y")
     ax.set_aspect("equal")

@@ -174,3 +174,35 @@ class WeightedGainSidelobeObjective:
         gain_val = gain_obj(state, surface, freq)
         sll_val = sll_obj(state, surface, freq)
         return self.alpha * gain_val + (1 - self.alpha) * sll_val
+
+
+@dataclass(frozen=True)
+class MaxCapacityObjective:
+    """Maximize MIMO capacity for an RIS-assisted link.
+
+    Returns negative capacity (for minimization).
+
+    Args:
+        mimo_link: MIMORISLink instance.
+        snr_linear: Total SNR (linear).
+    """
+
+    mimo_link: Any  # MIMORISLink — Any to avoid circular import
+    snr_linear: float = 100.0
+
+    def __call__(
+        self,
+        state: npt.NDArray[np.floating[Any]],
+        surface: Metasurface,
+        freq: float,
+        **kwargs: Any,
+    ) -> float:
+        """Evaluate: returns negative capacity."""
+        from metasurface_py.surfaces.state import SurfaceState
+
+        ss = SurfaceState(
+            values=state,
+            space=surface.cell.state_space,
+        )
+        cap = self.mimo_link.capacity(ss, self.snr_linear)
+        return float(-cap)
