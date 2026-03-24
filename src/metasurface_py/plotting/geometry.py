@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any
 
 import matplotlib.pyplot as plt
 import numpy as np
+import numpy.typing as npt
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
@@ -73,3 +74,54 @@ def plot_state_map(
     ax.set_aspect("equal")
     plt.colorbar(mesh, ax=ax, label="Phase [deg]")
     return ax, mesh
+
+
+def plot_element_amplitude_phase(
+    response: npt.NDArray[np.complexfloating[Any, Any]],
+    nx: int,
+    ny: int,
+    fig: Any | None = None,
+    **kwargs: Any,
+) -> Any:
+    """Plot amplitude and phase maps side by side.
+
+    Args:
+        response: Complex element responses, shape (N,).
+        nx: Number of elements along x.
+        ny: Number of elements along y.
+        fig: Matplotlib figure. Created if None.
+        **kwargs: Passed to pcolormesh.
+
+    Returns:
+        The matplotlib Figure.
+    """
+    if fig is None:
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 3))
+    else:
+        axes = fig.subplots(1, 2)
+        ax1, ax2 = axes[0], axes[1]
+
+    amp = np.abs(response).reshape(nx, ny)
+    phase = np.rad2deg(np.angle(response)).reshape(nx, ny)
+
+    m1 = ax1.pcolormesh(amp, cmap="viridis", shading="auto", **kwargs)
+    ax1.set_xlabel("Element x")
+    ax1.set_ylabel("Element y")
+    ax1.set_aspect("equal")
+    ax1.set_title("Amplitude")
+    plt.colorbar(m1, ax=ax1, label="Magnitude")
+
+    m2 = ax2.pcolormesh(
+        phase,
+        cmap="twilight",
+        shading="auto",
+        **kwargs,
+    )
+    ax2.set_xlabel("Element x")
+    ax2.set_ylabel("Element y")
+    ax2.set_aspect("equal")
+    ax2.set_title("Phase")
+    plt.colorbar(m2, ax=ax2, label="Phase [deg]")
+
+    fig.tight_layout()
+    return fig

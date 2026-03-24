@@ -10,6 +10,7 @@ import numpy as np
 if TYPE_CHECKING:
     import xarray as xr
     from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
 
 
 def plot_pattern_2d(
@@ -156,3 +157,108 @@ def plot_pattern_uv(
     ax.set_aspect("equal")
     plt.colorbar(mesh, ax=ax, label=label)
     return ax, mesh
+
+
+def plot_pattern_comparison(
+    patterns: list[tuple[xr.DataArray, str]],
+    cut_phi: float = 0.0,
+    ax: Axes | None = None,
+    db: bool = True,
+    normalize: bool = True,
+    **kwargs: Any,
+) -> Axes:
+    """Overlay multiple pattern cuts for comparison.
+
+    This is the most common figure in metasurface papers: continuous
+    vs quantized, proposed vs baseline, simulated vs measured.
+
+    Args:
+        patterns: List of (pattern, label) tuples.
+        cut_phi: Phi value for the cut [rad].
+        ax: Matplotlib axes. Created if None.
+        db: If True, plot in dB scale.
+        normalize: If True, normalize each to its own peak.
+        **kwargs: Passed to each ax.plot() call.
+
+    Returns:
+        The matplotlib Axes.
+    """
+    if ax is None:
+        _, ax = plt.subplots()
+
+    for pattern, label in patterns:
+        plot_pattern_2d(
+            pattern,
+            cut_phi=cut_phi,
+            ax=ax,
+            db=db,
+            normalize=normalize,
+            label=label,
+            **kwargs,
+        )
+
+    ax.legend()
+    return ax
+
+
+def plot_pattern_3d(
+    pattern: xr.DataArray,
+    ax: Any | None = None,
+    db: bool = True,
+    db_range: float = 30.0,
+    **kwargs: Any,
+) -> tuple[Figure, Any]:
+    """Plot 3D radiation pattern on a sphere.
+
+    Args:
+        pattern: Far-field pattern with dims (theta, phi).
+        ax: Matplotlib 3D axes. Created if None.
+        db: If True, use dB scale for radius.
+        db_range: Dynamic range in dB.
+        **kwargs: Passed to ax.plot_surface().
+
+    Returns:
+        Tuple of (Figure, Axes3D).
+    """
+    if ax is None:
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection="3d")
+    else:
+        fig = ax.get_figure()
+
+    theta = pattern.coords["theta"].values
+    phi = pattern.coords["phi"].values
+    theta_g, phi_g = np.meshgrid(theta, phi, indexing="ij")
+
+    data = np.abs(pattern.values)
+    if np.max(data) > 0:
+        data = data / np.max(data)
+
+    if db:
+        with np.errstate(divide="ignore"):
+            r = 20.0 * np.log10(np.maximum(data, 1e-10))
+        r = np.maximum(r, -db_range)
+        r = (r + db_range) / db_range  # normalize to [0, 1]
+    else:
+        r = data
+
+    x = r * np.sin(theta_g) * np.cos(phi_g)
+    y = r * np.sin(theta_g) * np.sin(phi_g)
+    z = r * np.cos(theta_g)
+
+    cmap = kwargs.pop("cmap", "viridis")
+    ax.plot_surface(
+        x,
+        y,
+        z,
+        facecolors=plt.get_cmap(cmap)(r),
+        rstride=1,
+        cstride=1,
+        antialiased=True,
+        shade=False,
+        **kwargs,
+    )
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_zlabel("z")
+    return fig, ax

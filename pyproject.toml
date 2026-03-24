@@ -42,6 +42,7 @@ dependencies = [
 [project.optional-dependencies]
 jax = ["jax>=0.4", "jaxlib>=0.4"]
 rf = ["scikit-rf>=0.30"]
+viz = ["seaborn>=0.13", "plotly>=5.0"]
 openems = []
 dev = [
     "pytest>=7.0",
@@ -88,6 +89,8 @@ module = [
     "h5py.*",
     "skrf.*",
     "pandas.*",
+    "seaborn.*",
+    "plotly.*",
 ]
 ignore_missing_imports = true
 

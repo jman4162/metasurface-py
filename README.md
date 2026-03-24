@@ -32,6 +32,21 @@ pattern = far_field_pattern(surface, state, freq=freq, angles=angles)
 plot_pattern_2d(pattern, cut_phi=0.0)
 ```
 
+## Citation
+
+If you use metasurface-py in your research, please cite:
+
+```bibtex
+@software{metasurface_py,
+  author       = {Hodge, John},
+  title        = {metasurface-py: Design, analysis, and optimization of programmable electromagnetic metasurfaces},
+  year         = {2026},
+  url          = {https://github.com/jman4162/metasurface-py},
+  version      = {0.1.0},
+  license      = {BSD-3-Clause},
+}
+```
+
 ## License
 
 BSD-3-Clause

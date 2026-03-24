@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "metasurface-py"
+version: 0.1.0
+license: BSD-3-Clause
+authors:
+  - family-names: Hodge
+    given-names: John
+    orcid: ""
+repository-code: "https://github.com/jman4162/metasurface-py"
+url: "https://github.com/jman4162/metasurface-py"
+keywords:
+  - metasurface
+  - reconfigurable intelligent surface
+  - RIS
+  - beamforming
+  - electromagnetic
+  - antenna
+  - optimization
