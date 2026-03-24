@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `metasurface-py` is an open-source Python package for design, analysis, and optimization of programmable electromagnetic metasurfaces (RIS/IRS, reflectarrays, transmitarrays) for wireless communication and sensing. See SPEC.md for the full specification.
 
-**Status:** Active development. Phase 0-1 complete (core, geometry, elements, surfaces, EM, plotting). SPEC.md defines the full architecture; `background_papers/` contains reference literature.
+**Status:** v0.1.0 release candidate. All phases (0-4) complete: core, geometry, elements, surfaces, EM, plotting, optimization, channels, experiments, datasets, adapters, IO, sensing. 58 source files, 170+ tests, 6 examples, 3 benchmarks. CI via GitHub Actions.
 
 ## Build and Development Commands
 

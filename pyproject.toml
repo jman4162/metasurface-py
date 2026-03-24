@@ -39,6 +39,10 @@ dependencies = [
     "h5py>=3.8",
 ]
 
+[project.urls]
+Repository = "https://github.com/jman4162/metasurface-py"
+Issues = "https://github.com/jman4162/metasurface-py/issues"
+
 [project.optional-dependencies]
 jax = ["jax>=0.4", "jaxlib>=0.4"]
 rf = ["scikit-rf>=0.30"]

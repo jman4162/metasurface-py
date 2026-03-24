@@ -2,6 +2,7 @@
 
 from metasurface_py.optimize.continuous import optimize_continuous
 from metasurface_py.optimize.discrete import refine_discrete
+from metasurface_py.optimize.multiobjective import ParetoResult, pareto_sweep
 from metasurface_py.optimize.objectives import (
     MaxGainObjective,
     MinSidelobeObjective,
@@ -14,8 +15,10 @@ __all__ = [
     "MaxGainObjective",
     "MinSidelobeObjective",
     "OptimizationResult",
+    "ParetoResult",
     "WeightedGainSidelobeObjective",
     "optimize_continuous",
+    "pareto_sweep",
     "refine_discrete",
     "relax_then_quantize",
 ]

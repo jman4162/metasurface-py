@@ -1,5 +1,9 @@
 # metasurface-py
 
+[![CI](https://github.com/jman4162/metasurface-py/actions/workflows/ci.yml/badge.svg)](https://github.com/jman4162/metasurface-py/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: BSD-3](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](LICENSE)
+
 Open-source Python package for design, analysis, and optimization of programmable electromagnetic metasurfaces for wireless communication and sensing.
 
 ## Installation
@@ -31,6 +35,19 @@ angles = AngleGrid.from_degrees(theta=np.arange(-90, 91, dtype=float), phi=np.ar
 pattern = far_field_pattern(surface, state, freq=freq, angles=angles)
 plot_pattern_2d(pattern, cut_phi=0.0)
 ```
+
+## Features
+
+- **Metasurface modeling** — Rectangular/hexagonal lattices, phase-only and lookup-table unit cells, amplitude-phase coupled elements
+- **Far-field analysis** — Array factor, directivity, sidelobe level, HPBW, beam steering, focusing, multi-beam synthesis
+- **Optimization** — Continuous (L-BFGS-B, DE), discrete refinement, relax-then-quantize pipeline, multi-objective Pareto sweeps
+- **Hardware constraints** — Phase quantization, grouped control lines, dead elements, manufacturing noise
+- **RIS channel models** — Free-space path loss, narrowband SISO RIS-assisted links, optimal phase computation
+- **Sensing** — Monostatic/bistatic RCS, detection SNR, Fisher information, CRLB for localization
+- **Mutual coupling** — Canonical dipole coupling approximation
+- **Publication-quality plotting** — 13+ plot functions, IEEE/Nature/poster presets, colorblind-safe palettes, PDF/PNG export
+- **Experiment management** — TOML configs, parameter sweeps, reproducibility metadata
+- **Interoperability** — CSV/HDF5/Touchstone import, scikit-rf adapter, xarray labeled outputs
 
 ## Citation
 
