@@ -100,7 +100,10 @@ select = [
 known-first-party = ["metasurface_py"]
 
 [tool.mypy]
-python_version = "3.11"
+# 3.12 target: numpy >= 2.5 ships PEP 695 `type` aliases in its stubs,
+# which mypy rejects at python_version 3.11. Runtime 3.11 support is
+# unchanged (CI tests it with the numpy versions that support 3.11).
+python_version = "3.12"
 strict = true
 warn_return_any = true
 warn_unused_configs = true
