@@ -1,10 +1,13 @@
 """Single source of truth for electromagnetic conventions used throughout the package.
 
-Time-harmonic convention: exp(-j*omega*t)  (IEEE antenna standard)
+Time-harmonic convention: exp(+j*omega*t)  (IEEE / engineering standard)
 This means:
-  - A positive phase shift exp(+j*phi) represents a phase advance / time delay.
   - Outgoing spherical waves go as exp(-j*k*r) / r.
+  - Outgoing cylindrical waves use the Hankel function of the second
+    kind, H_n^(2)(k*rho).
   - The steering vector for direction k_hat is exp(+j*k*k_hat.dot(r_n)).
+  - A wave propagating in +x goes as exp(-j*beta*x); attenuation is exp(-alpha*x)
+    with complex wavenumber k = beta - j*alpha.
 
 Coordinate system: ISO spherical (physics convention)
   - theta: polar angle from +z axis (0 = zenith, pi/2 = horizon)
@@ -38,11 +41,11 @@ ETA_0: float = MU_0 * SPEED_OF_LIGHT
 
 # --- Time-harmonic convention ---
 
-TIME_CONVENTION: str = "exp(-j*omega*t)"
-"""IEEE antenna convention. Phase advance is positive."""
+TIME_CONVENTION: str = "exp(+j*omega*t)"
+"""IEEE / engineering convention. Outgoing waves carry exp(-j*k*r) phase."""
 
-PHASOR_SIGN: int = -1
-"""Sign in exp(PHASOR_SIGN * j * omega * t). Value is -1 for IEEE convention."""
+PHASOR_SIGN: int = +1
+"""Sign in exp(PHASOR_SIGN * j * omega * t). Value is +1 for IEEE convention."""
 
 
 # --- Enums ---

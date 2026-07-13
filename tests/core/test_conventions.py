@@ -33,8 +33,9 @@ class TestPhysicalConstants:
         """eta0 = sqrt(mu0/eps0)."""
         assert pytest.approx(math.sqrt(MU_0 / EPS_0), rel=1e-10) == ETA_0
 
-    def test_phasor_sign_is_negative(self) -> None:
-        assert PHASOR_SIGN == -1
+    def test_phasor_sign_is_positive(self) -> None:
+        """exp(+j*omega*t) convention: kernels propagate with exp(-j*k*d)."""
+        assert PHASOR_SIGN == +1
 
 
 class TestWavelength:
