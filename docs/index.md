@@ -3,12 +3,18 @@
 [![CI](https://github.com/jman4162/metasurface-py/actions/workflows/ci.yml/badge.svg)](https://github.com/jman4162/metasurface-py/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/metasurface-py.svg)](https://pypi.org/project/metasurface-py/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
-[![License: BSD-3](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](LICENSE)
+[![License: BSD-3](https://img.shields.io/badge/license-BSD--3--Clause-green.svg)](https://github.com/jman4162/metasurface-py/blob/main/LICENSE)
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://metasurface-py.streamlit.app)
 
-Open-source Python package for design, analysis, and optimization of programmable electromagnetic metasurfaces for wireless communication and sensing.
+Open-source Python package for design, analysis, and optimization of electromagnetic metasurfaces for wireless communication and sensing: programmable reflecting surfaces (RIS/IRS), reflectarrays, and surface-wave-fed modulated metasurface (leaky-wave / holographic) antennas. Covers radiation patterns, RIS-assisted channel models, beamforming optimization under hardware constraints, and radar/localization metrics.
 
 ## Installation
+
+```bash
+pip install metasurface-py
+```
+
+For development:
 
 ```bash
 pip install -e ".[dev]"
@@ -45,6 +51,7 @@ plot_pattern_2d(pattern, cut_phi=0.0)
 - **Optimization** — Continuous (L-BFGS-B, DE), discrete refinement, relax-then-quantize pipeline, multi-objective Pareto sweeps
 - **Hardware constraints** — Phase quantization, grouped control lines, dead elements, manufacturing noise
 - **RIS channel models** — Free-space path loss, narrowband SISO RIS-assisted links, optimal phase computation
+- **Modulated MTS antennas** — Surface-wave-fed leaky-wave apertures: TM surface-wave dispersion, Oliner–Hessel modulated-reactance solver, adiabatic Floquet-mode aperture fields, CP far fields ([model documentation](modulated_mts_antennas.md))
 - **Sensing** — Monostatic/bistatic RCS, detection SNR, Fisher information, CRLB for localization
 - **Mutual coupling** — Canonical dipole coupling approximation
 - **Publication-quality plotting** — 13+ plot functions, IEEE/Nature/poster presets, colorblind-safe palettes, PDF/PNG export
@@ -57,10 +64,26 @@ Interactive Jupyter notebooks that run in Google Colab (no install required):
 
 | Notebook | Description | Colab |
 |----------|-------------|-------|
-| [01 Getting Started](notebooks/01_getting_started.ipynb) | Create a metasurface, steer a beam, compare quantization | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/01_getting_started.ipynb) |
-| [02 Optimization](notebooks/02_optimization.ipynb) | Relax-then-quantize with hardware constraints | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/02_optimization.ipynb) |
-| [03 RIS Link](notebooks/03_ris_link.ipynb) | RIS-assisted communication link, N² scaling | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/03_ris_link.ipynb) |
-| [04 Sensing & ISAC](notebooks/04_sensing_isac.ipynb) | Radar detection, localization CRLB, comms-sensing tradeoff | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/04_sensing_isac.ipynb) |
+| [01 Getting Started](https://github.com/jman4162/metasurface-py/blob/main/notebooks/01_getting_started.ipynb) | Create a metasurface, steer a beam, compare quantization | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/01_getting_started.ipynb) |
+| [02 Optimization](https://github.com/jman4162/metasurface-py/blob/main/notebooks/02_optimization.ipynb) | Relax-then-quantize with hardware constraints | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/02_optimization.ipynb) |
+| [03 RIS Link](https://github.com/jman4162/metasurface-py/blob/main/notebooks/03_ris_link.ipynb) | RIS-assisted communication link, N² scaling | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/03_ris_link.ipynb) |
+| [04 Sensing & ISAC](https://github.com/jman4162/metasurface-py/blob/main/notebooks/04_sensing_isac.ipynb) | Radar detection, localization CRLB, comms-sensing tradeoff | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jman4162/metasurface-py/blob/main/notebooks/04_sensing_isac.ipynb) |
+
+## Examples
+
+Runnable scripts in [`examples/`](https://github.com/jman4162/metasurface-py/tree/main/examples), including reproductions of published results:
+
+| Script | Description |
+|--------|-------------|
+| [01 Beam steering](https://github.com/jman4162/metasurface-py/blob/main/examples/01_beam_steering.py) | Steer a beam, compare 1/2/3-bit phase quantization |
+| [02 Gain vs scan angle](https://github.com/jman4162/metasurface-py/blob/main/examples/02_gain_vs_scan_angle.py) | Scan-loss sweep |
+| [03 Near-field focusing](https://github.com/jman4162/metasurface-py/blob/main/examples/03_near_field_focusing.py) | Spherical-wave focusing phase profile |
+| [04 Multi-beam](https://github.com/jman4162/metasurface-py/blob/main/examples/04_multi_beam.py) | Dual-beam synthesis |
+| [05 Optimized steering](https://github.com/jman4162/metasurface-py/blob/main/examples/05_optimize_steering.py) | Beam optimization under hardware constraints |
+| [06 RIS link](https://github.com/jman4162/metasurface-py/blob/main/examples/06_ris_link.py) | RIS-assisted communication link budget |
+| [07 Wu & Zhang 2019](https://github.com/jman4162/metasurface-py/blob/main/examples/07_reproduce_wu_zhang2019.py) | Reproduces "Intelligent Reflecting Surface Enhanced Wireless Network" (IEEE TWC 2019): N² SNR scaling, coverage extension |
+| [08 Basar et al. 2019](https://github.com/jman4162/metasurface-py/blob/main/examples/08_reproduce_basar2019.py) | Reproduces "Wireless Communications Through Reconfigurable Intelligent Surfaces" (IEEE Access 2019): scaling law, path loss, coverage |
+| [09 Faenzi et al. 2019](https://github.com/jman4162/metasurface-py/blob/main/examples/09_reproduce_faenzi2019.py) | Reproduces "Metasurface Antennas: New Models, Applications and Realizations" (Sci. Rep. 2019): leaky-wave dispersion, RHCP patterns, bandwidth — see [Modulated MTS Antennas](modulated_mts_antennas.md) |
 
 ## Citation
 
@@ -72,7 +95,7 @@ If you use metasurface-py in your research, please cite:
   title        = {metasurface-py: Design, analysis, and optimization of programmable electromagnetic metasurfaces},
   year         = {2026},
   url          = {https://github.com/jman4162/metasurface-py},
-  version      = {0.1.0},
+  version      = {0.3.0},
   license      = {BSD-3-Clause},
 }
 ```

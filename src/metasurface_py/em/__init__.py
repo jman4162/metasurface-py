@@ -1,5 +1,14 @@
-"""Electromagnetic modeling: array factor, far-field, steering."""
+"""Electromagnetic modeling: array factor, far-field, steering, leaky waves."""
 
+from metasurface_py.em.aperture_field import (
+    afm_surface_current,
+    aperture_flux_power,
+    modulated_aperture_field,
+    pattern_directivity,
+    radiate_aperture,
+    radiated_power,
+    total_field,
+)
 from metasurface_py.em.array_factor import (
     array_factor,
     directivity,
@@ -9,18 +18,53 @@ from metasurface_py.em.array_factor import (
     sidelobe_level,
 )
 from metasurface_py.em.coupling import apply_coupling, mutual_impedance_approx
+from metasurface_py.em.leakywave import (
+    LeakyWaveMode,
+    SurfaceWaveSolution,
+    alpha_for_taper,
+    dispersion_map,
+    dispersion_modulated_reactance,
+    gain_bandwidth_product,
+    grounded_slab_reactance_tm,
+    opaque_to_transparent,
+    relative_bandwidth,
+    solve_sw_transparent,
+    sw_group_velocity,
+    sw_wavenumber_tm,
+    transparent_to_opaque,
+)
 from metasurface_py.em.steering import focusing_phase, multi_beam_phase, steering_phase
 
 __all__ = [
+    "LeakyWaveMode",
+    "SurfaceWaveSolution",
+    "afm_surface_current",
+    "alpha_for_taper",
+    "aperture_flux_power",
     "apply_coupling",
     "array_factor",
     "directivity",
+    "dispersion_map",
+    "dispersion_modulated_reactance",
     "far_field_pattern",
     "focusing_phase",
+    "gain_bandwidth_product",
+    "grounded_slab_reactance_tm",
     "half_power_beamwidth",
+    "modulated_aperture_field",
     "multi_beam_phase",
     "mutual_impedance_approx",
+    "opaque_to_transparent",
+    "pattern_directivity",
     "peak_gain_db",
+    "radiate_aperture",
+    "radiated_power",
+    "relative_bandwidth",
     "sidelobe_level",
+    "solve_sw_transparent",
     "steering_phase",
+    "sw_group_velocity",
+    "sw_wavenumber_tm",
+    "total_field",
+    "transparent_to_opaque",
 ]

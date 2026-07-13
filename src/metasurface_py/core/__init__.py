@@ -11,7 +11,13 @@ from metasurface_py.core.conventions import (
     k0,
     wavelength,
 )
-from metasurface_py.core.types import AngleGrid, FrequencyGrid, Position3D
+from metasurface_py.core.polarization import axial_ratio_db, circular_components
+from metasurface_py.core.types import (
+    AngleGrid,
+    FrequencyGrid,
+    Position3D,
+    SubstrateInfo,
+)
 
 __all__ = [
     "EPS_0",
@@ -24,6 +30,9 @@ __all__ = [
     "NormalizationMode",
     "PolarizationBasis",
     "Position3D",
+    "SubstrateInfo",
+    "axial_ratio_db",
+    "circular_components",
     "k0",
     "wavelength",
 ]

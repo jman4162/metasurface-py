@@ -1,0 +1,40 @@
+figure,quantity,value,unit,notes
+fig5a,frequency,29.75,GHz,broadside RHCP high-efficiency antenna
+fig5a,radius,13.5,lambda,aperture radius in free-space wavelengths
+fig5a,substrate_eps_r,3.0,-,Rogers RO3003
+fig5a,substrate_thickness,0.762,mm,Rogers RO3003
+fig5a,substrate_loss_tangent,0.001,-,Rogers RO3003
+fig5a,measured_gain,37.0,dBi,includes feed and ohmic losses
+fig5a,taper_spillover_product,0.85,-,design value eps_s*eps_t1
+fig5a,overall_efficiency,0.70,-,measured eps_tot
+fig5a,band_3db_low,29.1,GHz,3 dB gain bandwidth lower edge
+fig5a,band_3db_high,30.5,GHz,3 dB gain bandwidth upper edge
+fig5a,axial_ratio_max,1.3,dB,within half-power beamwidth
+fig6,frequency,20.0,GHz,tilted-beam RHCP antenna
+fig6,radius,10.0,lambda,aperture radius at center frequency
+fig6,beam_tilt,30.0,deg,design tilt from broadside
+fig6,peak_copol_directivity,33.0,dBi,measured maximum co-polar directivity
+fig6,aperture_efficiency,0.58,-,measured
+fig6,band_3db_low,19.65,GHz,3 dB bandwidth lower edge
+fig6,band_3db_high,20.3,GHz,3 dB bandwidth upper edge
+fig6,crosspol_below_peak,30.0,dB,cross-polar level below main lobe max
+fig6,axial_ratio_max,1.0,dB,within half-power beamwidth
+dualband,f1,26.25,GHz,dual-band antenna lower band
+dualband,f2,32.05,GHz,dual-band antenna upper band
+dualband,x_opaque_f1,0.6,eta0,average opaque reactance at f1
+dualband,x_opaque_f2,1.1,eta0,average opaque reactance at f2
+dualband,x_transparent_f1,-1058.0,ohm,average transparent reactance at f1
+dualband,x_transparent_f2,-796.0,ohm,average transparent reactance at f2
+dualband,substrate_eps_r,10.2,-,Rogers RO3010
+dualband,substrate_thickness,0.635,mm,Rogers RO3010
+dualband,radius,9.8,cm,aperture radius
+dualband,broadside_directivity_f1,30.23,dBi,computed (GR-MoM/FMM)
+dualband,broadside_directivity_f2,31.81,dBi,computed (GR-MoM/FMM)
+dualband,axial_ratio_f1,0.34,dB,boresight
+dualband,axial_ratio_f2,0.17,dB,boresight
+wideband,antenna1_radius,16.66,cm,Ka-band wideband prototype
+wideband,antenna1_band_low,20.0,GHz,relative bandwidth 40 percent
+wideband,antenna1_band_high,30.0,GHz,average gain about 29 dB
+wideband,antenna2_radius,11.11,cm,second wideband prototype
+wideband,antenna2_band_low,24.0,GHz,relative bandwidth 22 percent
+wideband,antenna2_band_high,30.0,GHz,average gain about 29 dB

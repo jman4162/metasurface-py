@@ -1,5 +1,10 @@
 site_name: metasurface-py
 site_url: https://jman4162.github.io/metasurface-py/
+site_description: >-
+  Python package for electromagnetic metasurface design and analysis:
+  reconfigurable intelligent surfaces (RIS/IRS), reflectarrays, and
+  modulated metasurface (leaky-wave) antennas — radiation patterns,
+  RIS channel models, beamforming optimization, and sensing metrics.
 repo_url: https://github.com/jman4162/metasurface-py
 repo_name: jman4162/metasurface-py
 
@@ -23,6 +28,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - Modulated MTS Antennas: modulated_mts_antennas.md
   - API Reference:
     - Core: api/core.md
     - Geometry: api/geometry.md

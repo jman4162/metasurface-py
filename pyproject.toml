@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "metasurface-py"
-version = "0.2.0"
+version = "0.3.0"
 description = "Design, analysis, and optimization of programmable electromagnetic metasurfaces"
 readme = "README.md"
 license = "BSD-3-Clause"
@@ -19,6 +19,16 @@ keywords = [
     "electromagnetic",
     "antenna",
     "optimization",
+    "metasurface antenna",
+    "leaky-wave antenna",
+    "holographic antenna",
+    "reflectarray",
+    "RIS channel model",
+    "radiation pattern",
+    "phased array",
+    "6G",
+    "wireless communications",
+    "antenna design",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -40,6 +50,8 @@ dependencies = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/jman4162/metasurface-py"
+Documentation = "https://jman4162.github.io/metasurface-py/"
 Repository = "https://github.com/jman4162/metasurface-py"
 Issues = "https://github.com/jman4162/metasurface-py/issues"
 

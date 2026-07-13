@@ -39,3 +39,6 @@ htmlcov/
 
 # Large binary files
 background_papers/
+
+# Generated example output
+examples/figures/
