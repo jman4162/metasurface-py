@@ -1,0 +1,4718 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python package for electromagnetic metasurface design and analysis: reconfigurable intelligent surfaces (RIS/IRS), reflectarrays, and modulated metasurface (leaky-wave) antennas — radiation patterns, RIS channel models, beamforming optimization, and sensing metrics.">
+      
+      
+      
+        <link rel="canonical" href="https://jman4162.github.io/metasurface-py/api/em/">
+      
+      
+        <link rel="prev" href="../surfaces/">
+      
+      
+        <link rel="next" href="../channels/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>EM - metasurface-py</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metasurface_py.em" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="metasurface-py" class="md-header__button md-logo" aria-label="metasurface-py" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            metasurface-py
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jman4162/metasurface-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jman4162/metasurface-py
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="metasurface-py" class="md-nav__button md-logo" aria-label="metasurface-py" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    metasurface-py
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jman4162/metasurface-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jman4162/metasurface-py
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulated_mts_antennas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modulated MTS Antennas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../surfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EM
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metasurface_py.em" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        em
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="em">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeakyWaveMode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LeakyWaveMode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode.beta_delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beta_delta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode.k_lw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k_lw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.SurfaceWaveSolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SurfaceWaveSolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.afm_surface_current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        afm_surface_current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.alpha_for_taper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        alpha_for_taper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.aperture_flux_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aperture_flux_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.apply_coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_coupling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.directivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        directivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.dispersion_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dispersion_map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.dispersion_modulated_reactance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dispersion_modulated_reactance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.far_field_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        far_field_pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.focusing_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        focusing_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.gain_bandwidth_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gain_bandwidth_product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.grounded_slab_reactance_tm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        grounded_slab_reactance_tm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.half_power_beamwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        half_power_beamwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.modulated_aperture_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modulated_aperture_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.multi_beam_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        multi_beam_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.mutual_impedance_approx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mutual_impedance_approx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.opaque_to_transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        opaque_to_transparent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.pattern_directivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pattern_directivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.peak_gain_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_gain_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.radiate_aperture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiate_aperture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.radiated_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiated_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.relative_bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relative_bandwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sidelobe_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sidelobe_level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.solve_sw_transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        solve_sw_transparent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.steering_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        steering_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sw_group_velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sw_group_velocity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sw_wavenumber_tm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sw_wavenumber_tm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.total_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        total_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.transparent_to_opaque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transparent_to_opaque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../channels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimize/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimize
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adapters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backends/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backends
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metasurface_py.em" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        em
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="em">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeakyWaveMode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LeakyWaveMode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode.beta_delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        beta_delta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.LeakyWaveMode.k_lw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k_lw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.SurfaceWaveSolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SurfaceWaveSolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.afm_surface_current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        afm_surface_current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.alpha_for_taper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        alpha_for_taper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.aperture_flux_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aperture_flux_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.apply_coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_coupling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.directivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        directivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.dispersion_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dispersion_map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.dispersion_modulated_reactance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dispersion_modulated_reactance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.far_field_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        far_field_pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.focusing_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        focusing_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.gain_bandwidth_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gain_bandwidth_product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.grounded_slab_reactance_tm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        grounded_slab_reactance_tm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.half_power_beamwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        half_power_beamwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.modulated_aperture_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modulated_aperture_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.multi_beam_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        multi_beam_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.mutual_impedance_approx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mutual_impedance_approx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.opaque_to_transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        opaque_to_transparent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.pattern_directivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pattern_directivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.peak_gain_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_gain_db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.radiate_aperture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiate_aperture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.radiated_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiated_power
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.relative_bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relative_bandwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sidelobe_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sidelobe_level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.solve_sw_transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        solve_sw_transparent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.steering_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        steering_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sw_group_velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sw_group_velocity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.sw_wavenumber_tm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sw_wavenumber_tm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.total_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        total_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasurface_py.em.transparent_to_opaque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transparent_to_opaque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>EM</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="metasurface_py.em" class="doc doc-heading">
+            <code>metasurface_py.em</code>
+
+
+</h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Electromagnetic modeling: array factor, far-field, steering, leaky waves.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.em.LeakyWaveMode" class="doc doc-heading">
+            <code>LeakyWaveMode</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Complex leaky-wave mode of a sinusoidally modulated reactance.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.LeakyWaveMode.beta">beta</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phase constant of the fundamental (0-indexed) harmonic [rad/m].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.LeakyWaveMode.alpha">alpha</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Attenuation (leakage) constant [Np/m], alpha &gt;= 0.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.LeakyWaveMode.beta_sw">beta_sw</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unmodulated surface-wave phase constant [rad/m].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.LeakyWaveMode.converged">converged</span></code></td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if the Newton iteration and mode-count check passed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.LeakyWaveMode.n_modes">n_modes</span></code></td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Floquet harmonics per side used in the truncation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="metasurface_py.em.LeakyWaveMode.beta_delta" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">beta_delta</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Modulation-induced shift beta - beta_sw [rad/m].</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="metasurface_py.em.LeakyWaveMode.k_lw" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">k_lw</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Complex leaky wavenumber beta - j*alpha [rad/m].</p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="metasurface_py.em.SurfaceWaveSolution" class="doc doc-heading">
+            <code>SurfaceWaveSolution</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Self-consistent TM surface-wave solution on sheet + grounded slab.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.SurfaceWaveSolution.beta">beta</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Surface-wave phase constant [rad/m].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.SurfaceWaveSolution.x_op">x_op</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Equivalent opaque (impenetrable) reactance [ohm].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.SurfaceWaveSolution.x_slab">x_slab</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Grounded-slab input reactance at beta [ohm].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.SurfaceWaveSolution.x_sheet">x_sheet</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transparent sheet reactance used [ohm].</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="metasurface_py.em.SurfaceWaveSolution.freq">freq</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.afm_surface_current" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">afm_surface_current</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">k_local</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>0-mode surface-wave current J_rho(rho) of the adiabatic Floquet model.</p>
+<p>J(rho) = H_1^(2)( int_0^rho k_local(rho') drho' ), the cylindrical
+outgoing-wave form of Faenzi et al. (2019) Eq. (3) for the n=0 mode,
+with the local complex wavenumber accumulated adiabatically along the
+radius. The imaginary part of k_local (leakage alpha) produces the
+radial amplitude decay.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rho</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Radial samples, increasing, shape (n,) [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>k_local</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.ComplexArray">ComplexArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Local complex wavenumber beta(rho) - j*alpha(rho), shape (n,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.ComplexArray">ComplexArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex current profile, shape (n,) (unnormalized).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.alpha_for_taper" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">alpha_for_taper</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">efficiency</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Radial leakage profile alpha(rho) for a target aperture amplitude.</p>
+<p>Cylindrical leaky-wave illumination synthesis:
+2<em>alpha(rho) = rho</em>|A|^2 / ((1/eta_s)*int_0^a rho'|A|^2 drho'
+                             - int_0^rho rho'|A|^2 drho')
+where eta_s is the fraction of surface-wave power radiated over the
+aperture (Minatti et al., IEEE TAP 64(9), 3907-3919, 2016).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rho</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Radial samples, increasing, shape (n,) [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>amplitude</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target aperture amplitude |A(rho)|, shape (n,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>efficiency</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Fraction of SW power radiated (0 &lt; eta_s &lt; 1).</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.9</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>alpha(rho) [Np/m], shape (n,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.aperture_flux_power" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">aperture_flux_power</span><span class="p">(</span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">,</span> <span class="n">cell_areas</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Power carried by a tangential aperture field [W].</p>
+<p>P = (1/(2*eta0)) * sum(|E_x|^2 + |E_y|^2) * dA. For electrically large
+apertures this matches the integrated radiated power of
+:func:<code>radiate_aperture</code> to within the quadrature error.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.apply_coupling" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply_coupling</span><span class="p">(</span><span class="n">element_response</span><span class="p">,</span> <span class="n">coupling_matrix</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Modify element responses to account for mutual coupling.</p>
+<p>The coupled response is: w_coupled = C @ w_isolated
+where C is the coupling matrix.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>element_response</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Isolated element responses, shape (N,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>coupling_matrix</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>N x N coupling matrix.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Coupled element responses, shape (N,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.directivity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">directivity</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute directivity from a far-field pattern.</p>
+<p>D(theta, phi) = 4*pi * |AF|^2 / integral(|AF|^2 * sin(theta) dtheta dphi)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex far-field pattern with dims (theta, phi).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directivity pattern (linear) with same dims.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.dispersion_map" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dispersion_map</span><span class="p">(</span><span class="n">x_op</span><span class="p">,</span> <span class="n">m_values</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">n_modes</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Leaky-wave beta and alpha versus modulation index.</p>
+<p>Reproduces Fig. 10-style maps from Faenzi et al. (2019): the
+propagation and attenuation constants of the leaky wave as functions
+of the modulation index.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_op</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Average opaque reactance [ohm].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>m_values</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation indices, shape (n_m,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>period</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation period [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_modes</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Floquet truncation per side.</p>
+              </div>
+            </td>
+            <td>
+                  <code>7</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.Dataset">Dataset</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>xr.Dataset with dim <code>m</code> and data_vars <code>beta_over_k0</code>,</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.Dataset">Dataset</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>alpha_over_k0</code>, <code>converged</code>; attrs carry x_op, period, freq.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.dispersion_modulated_reactance" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dispersion_modulated_reactance</span><span class="p">(</span><span class="n">x_op</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">n_modes</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Complex leaky-wave mode of X(x) = x_op<em>(1 + m</em>cos(2<em>pi</em>x/period)).</p>
+<p>Solves the truncated Floquet transverse-resonance determinant by
+complex Newton iteration with continuation in the modulation index
+(steps of &lt;= 0.05 starting from the analytic m=0 surface wave).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_op</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Average opaque reactance [ohm], &gt; 0.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>m</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation index (0 &lt;= m &lt; 1).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>period</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation period d [m]; K = 2*pi/d.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_modes</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Floquet harmonics per side in the truncation.</p>
+              </div>
+            </td>
+            <td>
+                  <code>7</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="LeakyWaveMode
+
+
+  
+      dataclass
+   (metasurface_py.em.leakywave.LeakyWaveMode)" href="#metasurface_py.em.LeakyWaveMode">LeakyWaveMode</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>LeakyWaveMode with beta, alpha and convergence status. <code>converged</code></p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="LeakyWaveMode
+
+
+  
+      dataclass
+   (metasurface_py.em.leakywave.LeakyWaveMode)" href="#metasurface_py.em.LeakyWaveMode">LeakyWaveMode</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>also requires the root to move &lt; 1e-5*k0 when n_modes is increased</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="LeakyWaveMode
+
+
+  
+      dataclass
+   (metasurface_py.em.leakywave.LeakyWaveMode)" href="#metasurface_py.em.LeakyWaveMode">LeakyWaveMode</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>by 2.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="references" open>
+  <summary>References</summary>
+  <p>Oliner &amp; Hessel, IRE Trans. Antennas Propag. 7, 201-208 (1959).
+Minatti et al., IEEE Trans. Antennas Propag. 64(9), 3896-3906 (2016).</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.far_field_pattern" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">far_field_pattern</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">theta_inc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">phi_inc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute the far-field radiation pattern of a metasurface.</p>
+<p>Combines element response (from the cell model) with the array factor.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>surface</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Metasurface
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.metasurface.Metasurface)" href="../surfaces/#metasurface_py.surfaces.Metasurface">Metasurface</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The metasurface object.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>state</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceState
+
+
+  
+      dataclass
+   (metasurface_py.surfaces.state.SurfaceState)" href="../surfaces/#metasurface_py.surfaces.SurfaceState">SurfaceState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current surface state.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>angles</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="AngleGrid
+
+
+  
+      dataclass
+   (metasurface_py.core.types.AngleGrid)" href="../core/#metasurface_py.core.AngleGrid">AngleGrid</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Observation angles.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>theta_inc</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Incident polar angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>phi_inc</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Incident azimuthal angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex far-field pattern as labeled xr.DataArray with dims (theta, phi).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Attributes include unit="complex_field".</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.focusing_phase" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">focusing_phase</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">focal_point</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute phase for near-field focusing at a point.</p>
+<p>Phase at element n: phi_n = -k0 * |focal_point - r_n|
+(spherical wave conjugation).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>lattice</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.geometry.lattice.SupportsLattice">SupportsLattice</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Element positions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>focal_point</code>
+            </td>
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]] | <span title="tuple">tuple</span>[<span title="float">float</span>, <span title="float">float</span>, <span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target focal point (x, y, z) [meters].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phase values per element [rad], shape (N,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.gain_bandwidth_product" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">gain_bandwidth_product</span><span class="p">(</span><span class="n">v_g_over_c</span><span class="p">,</span> <span class="n">radius_lambda</span><span class="p">,</span> <span class="n">uniform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gain-bandwidth product estimate for modulated MTS antennas.</p>
+<p>GB ~= 22<em>(v_g/c)</em>a_lambda for uniform amplitude modulation and
+GB ~= 47<em>(v_g/c)</em>a_lambda/(a_lambda + 2) for optimal amplitude
+tapering, with G linear and B = delta_f/f0 (Faenzi et al. 2019,
+citing Minatti et al., IEEE TAP 65(6), 2836-2842, 2017).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>v_g_over_c</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Normalized SW group velocity.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>radius_lambda</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Aperture radius in free-space wavelengths.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>uniform</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True for uniform modulation, False for optimal tapering.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Gain-bandwidth product (linear gain times relative bandwidth).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.grounded_slab_reactance_tm" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">grounded_slab_reactance_tm</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">eps_r</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>TM input reactance of a grounded dielectric slab at the top face.</p>
+<p>X_slab = (k_z1 / (omega * eps0 * eps_r)) * tan(k_z1 * h), with
+k_z1 = sqrt(eps_r*k0^2 - beta^2). Positive (inductive) for thin slabs
+below the first thickness resonance.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>eps_r</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab relative permittivity.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>thickness</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab thickness [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>beta</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transverse propagation constant along the surface [rad/m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Input reactance [ohm] (sign carries inductive/capacitive).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.half_power_beamwidth" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">half_power_beamwidth</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">cut_phi</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute half-power beamwidth (HPBW) for a given phi cut [rad].</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex far-field pattern.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cut_phi</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phi value for the cut plane [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>HPBW in radians. Returns NaN if cannot be determined.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.modulated_aperture_field" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">modulated_aperture_field</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">j0_current</span><span class="p">,</span> <span class="n">x_avg</span><span class="p">,</span> <span class="n">big_k</span><span class="p">,</span> <span class="n">m_rho_rho</span><span class="p">,</span> <span class="n">m_rho_phi</span><span class="p">,</span> <span class="n">spiral_turns</span><span class="p">,</span> <span class="n">phase_offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">delta_rho_phi</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">extra_phase</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Radiating -1-harmonic aperture field of the modulated reactance.</p>
+<p>The e^{+j(K s + Phi)} half of the modulation cos(K s + Phi) multiplies
+the 0-mode current to produce the fast (radiating) harmonic:
+E_rho = j<em>x_avg</em>(m_rr/2)<em>exp(j</em>(K<em>rho + Phi_rr(phi)))</em>J(rho), with
+Phi_rr = spiral_turns*phi + phase_offset, and analogously E_phi from
+the rho-phi tensor entry with Phi_rp = Phi_rr + delta_rho_phi.</p>
+<p>With spiral_turns = -1 and delta_rho_phi = -pi/2 the aperture field is
+(rho_hat - j<em>phi_hat)</em>A(rho)<em>e^{-j</em>phi} = (x_hat - j<em>y_hat)</em>A(rho),
+i.e. uniform RHCP for a broadside design.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rho</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Radial samples, shape (n_rho,) [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>phi</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Azimuthal samples, shape (n_phi,) [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>j0_current</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.ComplexArray">ComplexArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>0-mode current J(rho), shape (n_rho,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_avg</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Average transparent reactance [ohm].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>big_k</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation wavenumber K = 2*pi/period [rad/m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>m_rho_rho</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation index profile for the rho-rho entry, shape (n_rho,).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>m_rho_phi</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modulation index profile for the rho-phi entry, shape (n_rho,);
+zeros for a scalar (isotropic) modulation.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>spiral_turns</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Azimuthal spiral index n in Phi = n*phi (+-1 gives CP).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>phase_offset</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Constant modulation phase [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>delta_rho_phi</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phase of the rho-phi entry relative to rho-rho [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>-<span title="numpy.pi">pi</span> / 2.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>extra_phase</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional additional modulation phase on the
+(rho, phi) grid, shape (n_rho, n_phi) [rad]. Used for tilted
+pencil beams, where the modulation phase carries a
+-k0<em>sin(theta0)</em>rho*cos(phi - phi0) term.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>(<span title="e_rho">e_rho</span>, <span title="e_phi">e_phi</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>complex aperture fields, each shape (n_rho, n_phi).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.multi_beam_phase" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">multi_beam_phase</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">directions</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute phase for multi-beam synthesis (superposition approximation).</p>
+<p>Combines steering vectors for multiple beam directions with optional weights.
+This produces an approximate multi-beam pattern; the result should be
+optimized for best performance.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>directions</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>[<span title="float">float</span>, <span title="float">float</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of (theta, phi) steering angles [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>weights</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="float">float</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional amplitude weights per beam. Defaults to uniform.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phase values per element [rad], shape (N,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.mutual_impedance_approx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">mutual_impedance_approx</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;canonical_dipole&#39;</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute approximate mutual impedance matrix.</p>
+<p>Uses canonical minimum-scattering dipole model for inter-element
+coupling. The coupling coefficient between elements i and j is
+approximated as: Z_ij ~ exp(-j<em>k</em>d_ij) / (k*d_ij) for i != j.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>lattice</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.geometry.lattice.SupportsLattice">SupportsLattice</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Element positions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>method</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Coupling model ("canonical_dipole").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;canonical_dipole&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.complexfloating">complexfloating</span>[<span title="typing.Any">Any</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>N x N complex coupling matrix (diagonal = 1).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.opaque_to_transparent" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">opaque_to_transparent</span><span class="p">(</span><span class="n">x_op</span><span class="p">,</span> <span class="n">x_slab</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Inverse of :func:<code>transparent_to_opaque</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.pattern_directivity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">pattern_directivity</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Directivity (linear) of a two-component E_theta/E_phi pattern.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.peak_gain_db" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">peak_gain_db</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Peak directivity/gain in dBi from a far-field pattern.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex far-field pattern.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Peak directivity in dBi.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.radiate_aperture" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">radiate_aperture</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">,</span> <span class="n">cell_areas</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">angles</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Far field of a tangential aperture field over a ground plane.</p>
+<p>Vector radiation integral (Balanis, Antenna Theory 4th ed., Ch. 12.5,
+exp(+j<em>omega</em>t) form): with f_{x,y}(theta, phi) =
+sum_n E_{x,y,n} * dA_n * exp(+j<em>k0</em>r_hat . r_n),</p>
+<pre><code>E_theta = (j*k0/(2*pi)) * (f_x*cos(phi) + f_y*sin(phi))
+E_phi   = (j*k0/(2*pi)) * cos(theta) * (f_y*cos(phi) - f_x*sin(phi))
+</code></pre>
+<p>The returned fields are r<em>E [V]: multiply by exp(-j</em>k0<em>r)/r for the
+field at distance r. Radiated power follows from
+:func:<code>radiated_power</code>, and D = 4</em>pi<em>|rE|^2 / (2</em>eta0*P).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>positions</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Aperture sample positions, shape (N, 3) [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>e_x</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.ComplexArray">ComplexArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Aperture E_x at the samples, shape (N,) [V/m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>e_y</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.ComplexArray">ComplexArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Aperture E_y at the samples, shape (N,) [V/m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cell_areas</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.em.aperture_field.RealArray">RealArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Quadrature areas, shape (N,) [m^2].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>angles</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="AngleGrid
+
+
+  
+      dataclass
+   (metasurface_py.core.types.AngleGrid)" href="../core/#metasurface_py.core.AngleGrid">AngleGrid</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Observation angles (theta in [0, pi/2] for the half-space).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.Dataset">Dataset</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>xr.Dataset with complex data_vars <code>E_theta</code>, <code>E_phi</code> [V]</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="xarray.Dataset">Dataset</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>over dims (theta, phi); attrs carry freq and normalization.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.radiated_power" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">radiated_power</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Total radiated power [W] from an r*E pattern Dataset.</p>
+<p>P = (1/(2*eta0)) * integral(|E_theta|^2 + |E_phi|^2) sin(theta) dtheta dphi.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.relative_bandwidth" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">relative_bandwidth</span><span class="p">(</span><span class="n">v_g_over_c</span><span class="p">,</span> <span class="n">radius_lambda</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Maximum relative bandwidth B ~= 0.95*(v_g/c)/a_lambda (uniform modulation).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.sidelobe_level" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sidelobe_level</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">main_beam_theta</span><span class="p">,</span> <span class="n">main_beam_phi</span><span class="p">,</span> <span class="n">exclusion_radius_rad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute peak sidelobe level relative to main beam [dB].</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code><span title="xarray.DataArray">DataArray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Complex far-field pattern.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>main_beam_theta</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Main beam polar angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>main_beam_phi</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Main beam azimuthal angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>exclusion_radius_rad</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Angular radius around main beam to exclude [rad].</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.1</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Peak sidelobe level in dB (negative value = sidelobes below main beam).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.solve_sw_transparent" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">solve_sw_transparent</span><span class="p">(</span><span class="n">x_sheet</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">eps_r</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Self-consistent TM surface wave for a transparent sheet on a grounded slab.</p>
+<p>Solves the transverse-resonance condition
+X_op(beta) = sqrt(beta^2 - k0^2) / (omega * eps0), where X_op(beta) is
+the parallel combination of the sheet with the slab reactance at beta.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_sheet</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transparent sheet reactance [ohm] (capacitive: &lt; 0).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>eps_r</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab relative permittivity.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>thickness</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab thickness [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SurfaceWaveSolution
+
+
+  
+      dataclass
+   (metasurface_py.em.leakywave.SurfaceWaveSolution)" href="#metasurface_py.em.SurfaceWaveSolution">SurfaceWaveSolution</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SurfaceWaveSolution with beta, x_op, x_slab.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If no TM surface-wave root exists in (k0, sqrt(eps_r)*k0).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.steering_phase" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">steering_phase</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">theta_steer</span><span class="p">,</span> <span class="n">phi_steer</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compute progressive phase shift for beam steering.</p>
+<p>For a reflective surface with normal incidence, the required phase
+at element n is: phi_n = -k0 * (x_n<em>u + y_n</em>v)
+where (u, v) = (sin(theta)<em>cos(phi), sin(theta)</em>sin(phi)).</p>
+<p>The negative sign ensures constructive interference in the target direction
+under our exp(-j<em>omega</em>t) convention.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>lattice</code>
+            </td>
+            <td>
+                  <code><span title="metasurface_py.geometry.lattice.SupportsLattice">SupportsLattice</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Element positions.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>theta_steer</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target polar angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>phi_steer</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target azimuthal angle [rad].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>[<span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Phase values per element [rad], shape (N,).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.sw_group_velocity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sw_group_velocity</span><span class="p">(</span><span class="n">x_sheet</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">eps_r</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">rel_step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Normalized surface-wave group velocity v_g/c.</p>
+<p>Central finite difference of the surface-wave dispersion beta(omega).
+The transparent sheet is treated as a quasi-static capacitance, so
+x_sheet scales as f_ref/f at the stencil points (Faenzi et al. 2019,
+wideband section).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_sheet</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Transparent sheet reactance at <code>freq</code> [ohm].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>eps_r</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab relative permittivity.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>thickness</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Slab thickness [m].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rel_step</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Relative frequency step for the stencil.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.001</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>v_g / c (dimensionless, in (0, 1]).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.sw_wavenumber_tm" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sw_wavenumber_tm</span><span class="p">(</span><span class="n">x_op</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>TM surface-wave phase constant on an impenetrable reactance boundary.</p>
+<p>beta_sw / k0 = sqrt(1 + (x_op / eta0)^2), valid for inductive x_op &gt; 0.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_op</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Opaque (impenetrable) surface reactance [ohm], must be &gt; 0.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>freq</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Frequency [Hz].</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>beta_sw [rad/m].</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.total_field" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">total_field</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Total field magnitude sqrt(|E_theta|^2 + |E_phi|^2) as a DataArray.</p>
+<p>Suitable input for :func:<code>metasurface_py.em.array_factor.directivity</code>
+and the other scalar pattern metrics.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="metasurface_py.em.transparent_to_opaque" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">transparent_to_opaque</span><span class="p">(</span><span class="n">x_sheet</span><span class="p">,</span> <span class="n">x_slab</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Opaque reactance from transparent sheet + slab (parallel combination).</p>
+<p>j<em>X_op = (j</em>x_sheet * j<em>x_slab) / (j</em>x_sheet + j*x_slab). A capacitive
+sheet (x_sheet &lt; 0) in parallel with the inductive slab yields the
+inductive opaque reactance that supports the TM surface wave.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
