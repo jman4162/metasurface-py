@@ -82,12 +82,12 @@ class AngleGrid:
     @property
     def theta_deg(self) -> npt.NDArray[np.floating[Any]]:
         """Theta values in degrees."""
-        return np.rad2deg(self.theta)  # type: ignore[no-any-return]
+        return np.asarray(np.rad2deg(self.theta), dtype=np.float64)
 
     @property
     def phi_deg(self) -> npt.NDArray[np.floating[Any]]:
         """Phi values in degrees."""
-        return np.rad2deg(self.phi)  # type: ignore[no-any-return]
+        return np.asarray(np.rad2deg(self.phi), dtype=np.float64)
 
 
 @dataclass(frozen=True)

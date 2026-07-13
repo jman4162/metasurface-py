@@ -69,7 +69,7 @@ def focusing_phase(
     positions = lattice.positions  # (N, 3)
     fp = np.asarray(focal_point, dtype=np.float64).ravel()
     distances = np.sqrt(np.sum((positions - fp[np.newaxis, :]) ** 2, axis=1))
-    return -kw * distances  # type: ignore[no-any-return]
+    return np.asarray(-kw * distances, dtype=np.float64)
 
 
 def multi_beam_phase(

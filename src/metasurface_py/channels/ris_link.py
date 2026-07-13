@@ -82,7 +82,10 @@ class RISLink:
         )
         h_sr = (lam / (4.0 * np.pi * d_rx)) * np.exp(-1j * kw * d_rx)
 
-        return h_ri, h_sr
+        return (
+            np.asarray(h_ri, dtype=np.complex128),
+            np.asarray(h_sr, dtype=np.complex128),
+        )
 
     def _direct_channel(self) -> complex:
         """Compute direct TX -> RX channel coefficient."""

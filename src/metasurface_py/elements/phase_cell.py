@@ -55,4 +55,5 @@ class PhaseOnlyCell:
         Returns:
             Complex reflection/transmission coefficients, shape (N,).
         """
-        return self.amplitude * np.exp(1j * np.asarray(state, dtype=np.float64))  # type: ignore[no-any-return]
+        response = self.amplitude * np.exp(1j * np.asarray(state, dtype=np.float64))
+        return np.asarray(response, dtype=np.complex128)

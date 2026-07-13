@@ -48,4 +48,7 @@ class UniformLinearArray:
             [self.center.x, self.center.y, self.center.z],
             dtype=np.float64,
         )
-        return center[np.newaxis, :] + offsets[:, np.newaxis] * ax[np.newaxis, :]
+        return np.asarray(
+            center[np.newaxis, :] + offsets[:, np.newaxis] * ax[np.newaxis, :],
+            dtype=np.float64,
+        )

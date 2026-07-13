@@ -164,7 +164,7 @@ class HexagonalLattice:
         pos = pos - centroid + self.origin
         if self.element_mask is not None:
             pos = pos[self.element_mask.ravel()]
-        return pos  # type: ignore[no-any-return]
+        return np.asarray(pos, dtype=np.float64)
 
     @property
     def num_elements(self) -> int:
