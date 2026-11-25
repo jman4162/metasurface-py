@@ -82,6 +82,14 @@ Runnable scripts in [`examples/`](examples/), including reproductions of publish
 | [08 Basar et al. 2019](examples/08_reproduce_basar2019.py) | Reproduces "Wireless Communications Through Reconfigurable Intelligent Surfaces" (IEEE Access 2019): scaling law, path loss, coverage |
 | [09 Faenzi et al. 2019](examples/09_reproduce_faenzi2019.py) | Reproduces "Metasurface Antennas: New Models, Applications and Realizations" (Sci. Rep. 2019): leaky-wave dispersion, RHCP patterns, bandwidth ([model docs](https://jman4162.github.io/metasurface-py/modulated_mts_antennas/)) |
 
+## Background
+
+metasurface-py builds on the author's PhD research at Virginia Tech on reconfigurable intelligent metasurfaces (2021). That work included a fabricated 2-bit metasurface prototype with PIN-diode-controlled meta-atoms, measured in the Army Research Laboratory (ARL) tapered anechoic range.
+
+- [Research write-up](https://john-hodge.com/blog/reconfigurable-intelligent-metasurfaces-phd-research/)
+- [Dissertation](https://vtechworks.lib.vt.edu/items/9011f677-0fcd-4f1a-9249-f5abe05bb806)
+- [Prototype photos, defense slides, and related EM work](https://github.com/jman4162/electromagnetics-work-samples#research)
+
 ## Citation
 
 If you use metasurface-py in your research, please cite:
